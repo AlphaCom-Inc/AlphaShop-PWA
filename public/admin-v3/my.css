@@ -1,0 +1,160 @@
+a.nav-link:hover {
+    border-radius: 10px;
+    background: #efefef;
+}
+
+a.nav-link img {
+    position: relative;
+    top: -2px;
+    left: -5px;
+    right: 5px;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.small-box, .btn {
+    border-radius: 10px;
+    overflow: hidden;
+}
+.note-editor .note-editable.card-block {
+    height: 500px !important;
+}
+
+.product-image {
+    width: auto;
+    height: 45px !important;
+}
+
+tr.text-center a .ai,
+.order-card .ai{
+    font-size: 22px;
+}
+
+th .ai {
+    font-size: 20px !important;
+}
+
+a > .ai,
+th .ai,
+td .ai,
+.btn .ai{
+    position: relative;
+    top: 2px;
+}
+
+.d-hr {
+    width: auto;
+    height: 1px;
+    margin: 10px 8px;
+    background: #e2e2e2;
+}
+
+.user-menu-footer {
+    margin-bottom: 10px;
+}
+
+.user-menu-footer a {
+    display: block;
+    width: auto;
+    margin: 0 8px;
+}
+
+.user-menu-footer .btn-light:hover {
+    background: #efefef;
+}
+
+.user-menu-footer .ai {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    right: 2px;
+}
+
+.card-widget {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.category-app-tools {
+    padding: 5px;
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
+
+.category-app-tools i {
+    padding: 10px 10px;
+    border-radius: 8px;
+}
+
+.category-app-tools a:hover i {
+    background: #efefef;
+}
+
+.list-group.list-group-root {
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-group, .list-group.list-group-root > p .list-group {
+    margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+    border-radius: 0;
+    border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+    border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > p > .list-group-item {
+    padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > p > .list-group-item {
+    padding-left: 45px;
+}
+.item-p{
+    margin: 0;
+    position: relative;
+}
+#reset-filter{
+    background-color: #dd4b39;
+    border-color: #d73925;
+    color: #fff;
+}
+
+.errors-log-content {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 650px;
+    max-height: 650px;
+    margin: 0;
+    padding: 15px;
+    border: 0;
+    outline: 0;
+    cursor: default;
+}
+
+textarea::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background: #efefef;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #007fff;
+    border-radius: 10px;
+    border: 2px solid #efefef;
+    cursor: pointer;
+}
+
+.settings-favicon {
+    width: auto;
+    height: 255px;
+}

@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "alphashop\\": "vendor/alphashop/core",
+      "install\\": "install",
+      "app\\": "app"
+    }
+  },
+  "require": {
+    "gabordemooij/redbean": "dev-master",
+    "vlucas/valitron": "^1.4",
+    "swiftmailer/swiftmailer": "^5.4"
+  }
+}
