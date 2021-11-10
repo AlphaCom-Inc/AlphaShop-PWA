@@ -1,5 +1,5 @@
 /*! Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
- * Licensed under the MIT License (LICENSE.txt).
+ * Licensed under the MIT License (LICENSE.md.txt).
  *
  * Version: 3.1.9
  *

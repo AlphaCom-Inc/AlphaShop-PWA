@@ -71,7 +71,7 @@ class CartController extends AppController {
                     redirect();
                 }else{
                     $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
-                    if(!$user_id = $user->save('user')){
+                    if(!$user_id = $user->save('as_user')){
                         $_SESSION['error'] = 'Ошибка!';
                         redirect();
                     }

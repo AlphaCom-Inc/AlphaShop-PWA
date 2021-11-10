@@ -15,7 +15,7 @@ class ProductController extends AppController {
         $count = \R::count('product');
         $pagination = new Pagination($page, $perpage, $count);
         $start = $pagination->getStart();
-        $products = \R::getAll("SELECT product.*, category.title AS cat FROM product JOIN category ON category.id = product.category_id ORDER BY product.title LIMIT $start, $perpage");
+        $products = \R::getAll("SELECT product.*, as_category.title AS cat FROM product JOIN as_category ON as_category.id = product.category_id ORDER BY product.title LIMIT $start, $perpage");
         $this->setMeta('Список товаров');
         $this->set(compact('products', 'pagination', 'count'));
     }
@@ -66,9 +66,9 @@ class ProductController extends AppController {
         $id = $this->getRequestID();
         $product = \R::load('product', $id);
         App::$app->setProperty('parent_id', $product->category_id);
-        $filter = \R::getCol('SELECT attr_id FROM attribute_product WHERE product_id = ?', [$id]);
+        $filter = \R::getCol('SELECT attr_id FROM as_attribute_product WHERE product_id = ?', [$id]);
         $related_product = \R::getAll("SELECT related_product.related_id, product.title FROM related_product JOIN product ON product.id = related_product.related_id WHERE related_product.product_id = ?", [$id]);
-        $gallery = \R::getCol('SELECT img FROM gallery WHERE product_id = ?', [$id]);
+        $gallery = \R::getCol('SELECT img FROM as_gallery WHERE product_id = ?', [$id]);
         $this->setMeta("Редактирование товара");
         $this->set(compact('product', 'filter', 'related_product', 'gallery', 'recSingle', 'recMulti'));
     }
@@ -90,9 +90,9 @@ class ProductController extends AppController {
                 redirect();
             }
 
-            if($id = $product->save('product')){
+            if($id = $product->save('as_product')){
                 $product->saveGallery($id);
-                $alias = AppModel::createAlias('product', 'alias', $data['title'], $id);
+                $alias = AppModel::createAlias('as_product', 'alias', $data['title'], $id);
                 $p = \R::load('product', $id);
                 $p->alias = $alias;
                 \R::store($p);
@@ -123,7 +123,7 @@ class ProductController extends AppController {
 
         $q = isset($_GET['q']) ? $_GET['q'] : '';
         $data['items'] = [];
-        $products = \R::getAssoc('SELECT id, title FROM product WHERE title LIKE ? LIMIT 10', ["%{$q}%"]);
+        $products = \R::getAssoc('SELECT id, title FROM as_product WHERE title LIKE ? LIMIT 10', ["%{$q}%"]);
         if($products){
             $i = 0;
             foreach($products as $id => $title){
@@ -142,8 +142,8 @@ class ProductController extends AppController {
         if(!$id || !$src){
             return;
         }
-        if(\R::exec("DELETE FROM gallery WHERE product_id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/$src");
+        if(\R::exec("DELETE FROM as_gallery WHERE product_id = ? AND img = ?", [$id, $src])){
+            @unlink(WWW . "/images/product/$src");
             exit('1');
         }
         return;

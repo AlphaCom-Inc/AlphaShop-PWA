@@ -97,8 +97,8 @@
                             <i class="nav-icon ai ai-bag"></i>
                             <p>
                                 Заказы
-                                <?php if(\R::count('order', "status = '0'")): ?>
-                                <span class="right badge badge-danger"><?=\R::count('order', "status = '0'");?></span>
+                                <?php if(\R::count('as_order', "status = '0'")): ?>
+                                <span class="right badge badge-danger"><?=\R::count('as_order', "status = '0'");?></span>
                                 <?php endif; ?>
                             </p>
                         </a>

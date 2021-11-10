@@ -14,7 +14,7 @@ class CategoryController extends AppController {
 
     public function deleteAction(){
         $id = $this->getRequestID();
-        $children = \R::count('category', 'parent_id = ?', [$id]);
+        $children = \R::count('as_category', 'parent_id = ?', [$id]);
         $errors = '';
         if($children){
             $errors .= '<li>Удаление невозможно, в категории есть вложенные категории</li>';
@@ -27,7 +27,7 @@ class CategoryController extends AppController {
             $_SESSION['error'] = "<ul>$errors</ul>";
             redirect();
         }
-        $category = \R::load('category', $id);
+        $category = \R::load('as_category', $id);
         \R::trash($category);
         $_SESSION['success'] = 'Категория удалена';
         redirect();
@@ -42,9 +42,9 @@ class CategoryController extends AppController {
                 $category->getErrors();
                 redirect();
             }
-            if($id = $category->save('category')){
-                $alias = AppModel::createAlias('category', 'alias', $data['title'], $id);
-                $cat = \R::load('category', $id);
+            if($id = $category->save('as_category')){
+                $alias = AppModel::createAlias('as_category', 'alias', $data['title'], $id);
+                $cat = \R::load('as_category', $id);
                 $cat->alias = $alias;
                 \R::store($cat);
                 $_SESSION['success'] = 'Категория добавлена';
@@ -64,9 +64,9 @@ class CategoryController extends AppController {
                 $category->getErrors();
                 redirect();
             }
-            if($category->update('category', $id)){
-                $alias = AppModel::createAlias('category', 'alias', $data['title'], $id);
-                $category = \R::load('category', $id);
+            if($category->update('as_category', $id)){
+                $alias = AppModel::createAlias('as_category', 'alias', $data['title'], $id);
+                $category = \R::load('as_category', $id);
                 $category->alias = $alias;
                 \R::store($category);
                 $_SESSION['success'] = 'Изменения сохранены';
@@ -74,7 +74,7 @@ class CategoryController extends AppController {
             redirect();
         }
         $id = $this->getRequestID();
-        $category = \R::load('category', $id);
+        $category = \R::load('as_category', $id);
         App::$app->setProperty('parent_id', $category->parent_id);
         $this->setMeta("Редактирование категории {$category->title}");
         $this->set(compact('category'));

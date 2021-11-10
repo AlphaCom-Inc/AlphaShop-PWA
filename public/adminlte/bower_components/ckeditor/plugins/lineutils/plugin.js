@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){function m(a,d){CKEDITOR.tools.extend(this,{editor:a,editable:a.editable(),doc:a.document,win:a.window},d,!0);this.inline=this.editable.isInline();this.inline||(this.frame=this.win.getFrame());this.target=this[this.inline?"editable":"doc"]}function n(a,d){CKEDITOR.tools.extend(this,d,{editor:a},!0)}function p(a,d){var b=a.editable();CKEDITOR.tools.extend(this,{editor:a,editable:b,inline:b.isInline(),doc:a.document,win:a.window,container:CKEDITOR.document.getBody(),winTop:CKEDITOR.document.getWindow()},
 d,!0);this.hidden={};this.visible={};this.inline||(this.frame=this.win.getFrame());this.queryViewport();var c=CKEDITOR.tools.bind(this.queryViewport,this),e=CKEDITOR.tools.bind(this.hideVisible,this),g=CKEDITOR.tools.bind(this.removeAll,this);b.attachListener(this.winTop,"resize",c);b.attachListener(this.winTop,"scroll",c);b.attachListener(this.winTop,"resize",e);b.attachListener(this.win,"scroll",e);b.attachListener(this.inline?b:this.frame,"mouseout",function(a){var b=a.data.$.clientX;a=a.data.$.clientY;

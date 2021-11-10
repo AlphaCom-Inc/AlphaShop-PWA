@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){function u(){return!1}function x(a,b){var c,d=[];a.filterChildren(b);for(c=a.children.length-1;0<=c;c--)d.unshift(a.children[c]),a.children[c].remove();c=a.attributes;var f=a,e=!0,h;for(h in c)if(e)e=!1;else{var l=new CKEDITOR.htmlParser.element(a.name);l.attributes[h]=c[h];f.add(l);f=l;delete c[h]}for(c=0;c<d.length;c++)f.add(d[c])}var g,k,t,q,n=CKEDITOR.tools,y=["o:p","xml","script","meta","link"],w={},v=0;CKEDITOR.plugins.pastefromword={};CKEDITOR.cleanWord=function(a,b){var c=Boolean(a.match(/mso-list:\s*l\d+\s+level\d+\s+lfo\d+/));
 CKEDITOR.plugins.clipboard.isCustomDataTypesSupported&&(a=CKEDITOR.plugins.pastefromword.styles.inliner.inline(a).getBody().getHtml());a=a.replace(/<!\[/g,"\x3c!--[").replace(/\]>/g,"]--\x3e");var d=CKEDITOR.htmlParser.fragment.fromHtml(a);q=new CKEDITOR.htmlParser.filter({root:function(e){e.filterChildren(q);CKEDITOR.plugins.pastefromword.lists.cleanup(g.createLists(e))},elementNames:[[/^\?xml:namespace$/,""],[/^v:shapetype/,""],[new RegExp(y.join("|")),""]],elements:{a:function(e){if(e.attributes.name){if("_GoBack"==

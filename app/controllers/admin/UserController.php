@@ -11,16 +11,12 @@ class UserController extends AppController {
     public function indexAction(){
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = App::$app->getParams('pagination_adm');
-        $count = \R::count('user');
+        $count = \R::count('as_user');
         $pagination = new Pagination($page, $perpage, $count);
         $start = $pagination->getStart();
-        $users = \R::findAll('user', "LIMIT $start, $perpage");
+        $users = \R::findAll('as_user', "LIMIT $start, $perpage");
         $this->setMeta('Список пользователей');
         $this->set(compact('users', 'pagination', 'count'));
-    }
-    public function recoverAction() {
-        $this->layout = 'login';
-        $this->setMeta('Востановления пароля');
     }
 
     public function addAction(){
@@ -42,18 +38,18 @@ class UserController extends AppController {
                 $user->getErrors();
                 redirect();
             }
-            if($user->update('user', $id)){
+            if($user->update('as_user', $id)){
                 $_SESSION['success'] = 'Изменения сохранены';
             }
             redirect();
         }
 
         $user_id = $this->getRequestID();
-        $user = \R::load('user', $user_id);
+        $user = \R::load('as_user', $user_id);
 
-        $orders = \R::getAll("SELECT `order`.`id`, `order`.`user_id`, `order`.`status`, `order`.`date`, `order`.`update_at`, `order`.`currency`, ROUND(SUM(`order_product`.`price`), 2) AS `sum` FROM `order`
-  JOIN `order_product` ON `order`.`id` = `order_product`.`order_id`
-  WHERE user_id = {$user_id} GROUP BY `order`.`id` ORDER BY `order`.`status`, `order`.`id`");
+        $orders = \R::getAll("SELECT `as_order`.`id`, `as_order`.`user_id`, `as_order`.`status`, `as_order`.`date`, `as_order`.`update_at`, `as_order`.`currency`, ROUND(SUM(`as_order_product`.`price`), 2) AS `sum` FROM `as_order`
+  JOIN `as_order_product` ON `as_order`.`id` = `as_order_product`.`order_id`
+  WHERE user_id = {$user_id} GROUP BY `as_order`.`id` ORDER BY `as_order`.`status`, `as_order`.`id`");
 
         $this->setMeta('Редактирование профиля пользователя');
         $this->set(compact('user', 'orders'));
@@ -72,6 +68,14 @@ class UserController extends AppController {
             }
         }
         $this->layout = 'login';
+    }
+
+    public function recoverAction() {
+        $this->layout = 'login';
+
+
+
+        $this->setMeta('Востановления пароля');
     }
 
 }

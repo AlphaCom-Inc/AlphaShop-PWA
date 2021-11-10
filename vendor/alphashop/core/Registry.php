@@ -20,8 +20,8 @@ class Registry {
     }
 
     public function getParams($name){
-        if(\R::findOne('params', "akey = '{$name}'") !== null){
-            return \R::findOne('params', "akey = '{$name}'")->avalue;
+        if(\R::findOne('as_params', "akey = '{$name}'") !== null){
+            return \R::findOne('as_params', "akey = '{$name}'")->avalue;
         }
         return null;
     }

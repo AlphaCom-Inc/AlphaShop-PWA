@@ -57,7 +57,7 @@ module.exports = function(type){
 }); // module: browser/debug.js
 
 require.register("browser/diff.js", function(module, exports, require){
-/* See LICENSE file for terms of use */
+/* See LICENSE.md file for terms of use */
 
 /*
  * Text diff implementation.

@@ -22,6 +22,12 @@ class CacheController extends AppController {
                 $cache->delete('filter_group');
                 $cache->delete('filter_attrs');
                 break;
+            case 'all':
+                $cache->delete('filter_group');
+                $cache->delete('filter_attrs');
+                $cache->delete('filter_group');
+                $cache->delete('filter_attrs');
+                break;
         }
         $_SESSION['success'] = 'Выбранный кэш удален';
         redirect();

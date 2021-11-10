@@ -31,7 +31,7 @@ class User extends AppModel {
     ];
 
     public function checkUnique(){
-        $user = \R::findOne('user', 'login = ? OR email = ?', [$this->attributes['login'], $this->attributes['email']]);
+        $user = \R::findOne('as_user', 'login = ? OR email = ?', [$this->attributes['login'], $this->attributes['email']]);
         if($user){
             if($user->login == $this->attributes['login']){
                 $this->errors['unique'][] = 'Этот логин уже занят';
@@ -49,9 +49,9 @@ class User extends AppModel {
         $password = !empty(trim($_POST['password'])) ? trim($_POST['password']) : null;
         if($login && $password){
             if($isAdmin){
-                $user = \R::findOne('user', "login = ? AND role = 'admin'", [$login]);
+                $user = \R::findOne('as_user', "login = ? AND role = 'admin'", [$login]);
             }else{
-                $user = \R::findOne('user', "login = ?", [$login]);
+                $user = \R::findOne('as_user', "login = ?", [$login]);
             }
             if($user){
                 if(password_verify($password, $user->password)){

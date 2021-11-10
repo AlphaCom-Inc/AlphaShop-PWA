@@ -7,14 +7,14 @@ use app\models\admin\Currency;
 class CurrencyController extends AppController{
 
     public function indexAction(){
-        $currencies = \R::findAll('currency');
+        $currencies = \R::findAll('as_currency');
         $this->setMeta('Валюты магазина');
         $this->set(compact('currencies'));
     }
 
     public function deleteAction(){
         $id = $this->getRequestID();
-        $currency = \R::load('currency', $id);
+        $currency = \R::load('as_currency', $id);
         \R::trash($currency);
         $_SESSION['success'] = "Изменения сохранены";
         redirect();
@@ -31,14 +31,14 @@ class CurrencyController extends AppController{
                 $currency->getErrors();
                 redirect();
             }
-            if($currency->update('currency', $id)){
+            if($currency->update('as_currency', $id)){
                 $_SESSION['success'] = "Изменения сохранены";
                 redirect();
             }
         }
 
         $id = $this->getRequestID();
-        $currency = \R::load('currency', $id);
+        $currency = \R::load('as_currency', $id);
         $this->setMeta("Редактирование валюты {$currency->title}");
         $this->set(compact('currency'));
     }

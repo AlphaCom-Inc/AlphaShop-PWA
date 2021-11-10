@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){CKEDITOR.plugins.add("mathjax",{lang:"af,ar,az,bg,ca,cs,cy,da,de,de-ch,el,en,en-gb,eo,es,es-mx,eu,fa,fi,fr,gl,he,hr,hu,id,it,ja,km,ko,ku,lt,nb,nl,no,oc,pl,pt,pt-br,ro,ru,sk,sl,sq,sv,tr,tt,ug,uk,vi,zh,zh-cn",requires:"widget,dialog",icons:"mathjax",hidpi:!0,init:function(b){var c=b.config.mathJaxClass||"math-tex";b.config.mathJaxLib||CKEDITOR.error("mathjax-no-config");b.widgets.add("mathjax",{inline:!0,dialog:"mathjax",button:b.lang.mathjax.button,mask:!0,allowedContent:"span(!"+c+")",
 styleToAllowedContentRules:function(a){a=a.getClassesArray();if(!a)return null;a.push("!"+c);return"span("+a.join(",")+")"},pathName:b.lang.mathjax.pathName,template:'\x3cspan class\x3d"'+c+'" style\x3d"display:inline-block" data-cke-survive\x3d1\x3e\x3c/span\x3e',parts:{span:"span"},defaults:{math:"\\(x \x3d {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)"},init:function(){var a=this.parts.span.getChild(0);a&&a.type==CKEDITOR.NODE_ELEMENT&&a.is("iframe")||(a=new CKEDITOR.dom.element("iframe"),a.setAttributes({style:"border:0;width:0;height:0",

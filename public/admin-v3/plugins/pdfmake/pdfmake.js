@@ -13406,7 +13406,7 @@ __webpack_require__(7042);
 __webpack_require__(6699);
 
 /*
- * MIT LICENSE
+ * MIT LICENSE.md
  * Copyright (c) 2011 Devon Govett
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -48863,7 +48863,7 @@ process.umask = function() { return 0; };
  * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * LICENSE.md file in the root directory of this source tree.
  */
 
 !(function(global) {

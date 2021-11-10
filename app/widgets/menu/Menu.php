@@ -14,7 +14,7 @@ class Menu{
     protected $tpl;
     protected $container = 'ul';
     protected $class = 'menu';
-    protected $table = 'category';
+    protected $table = 'as_category';
     protected $cache = 3600;
     protected $cacheKey = 'alphashop_menu';
     protected $attrs = [];

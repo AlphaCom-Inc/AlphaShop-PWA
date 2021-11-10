@@ -12,7 +12,7 @@ class CategoryController extends AppController {
 
     public function viewAction(){
         $alias = $this->route['alias'];
-        $category = \R::findOne('category', 'alias = ?', [$alias]);
+        $category = \R::findOne('as_category', 'alias = ?', [$alias]);
         if(!$category){
             throw new \Exception('Страница не найдена', 404);
         }
@@ -37,7 +37,7 @@ class CategoryController extends AppController {
             $filter = Filter::getFilter();
             if($filter){
                 $cnt = Filter::getCountGroups($filter);
-                $sql_part = "AND id IN (SELECT product_id FROM attribute_product WHERE attr_id IN ($filter) GROUP BY product_id HAVING COUNT(product_id) = $cnt)";
+                $sql_part = "AND id IN (SELECT product_id FROM as_attribute_product WHERE attr_id IN ($filter) GROUP BY product_id HAVING COUNT(product_id) = $cnt)";
             }
         }
 
@@ -45,7 +45,7 @@ class CategoryController extends AppController {
         $pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
 
-        $products = \R::find('product', "status = '1' AND category_id IN ($ids) $sql_part LIMIT $start, $perpage");
+        $products = \R::find('as_product', "status = '1' AND category_id IN ($ids) $sql_part LIMIT $start, $perpage");
 
         if($this->isAjax()){
             $this->loadView('filter', compact('products', 'total', 'pagination'));

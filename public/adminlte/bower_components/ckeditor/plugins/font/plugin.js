@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){function n(a,c,h,e,q,n,u,w){var x=a.config,r=new CKEDITOR.style(u),g=q.split(";");q=[];for(var m={},d=0;d<g.length;d++){var l=g[d];if(l){var l=l.split("/"),v={},p=g[d]=l[0];v[h]=q[d]=l[1]||p;m[p]=new CKEDITOR.style(u,v);m[p]._.definition.name=p}else g.splice(d--,1)}a.ui.addRichCombo(c,{label:e.label,title:e.panelTitle,toolbar:"styles,"+w,allowedContent:r,requiredContent:r,contentTransformations:[[{element:"font",check:"span",left:function(b){return!!b.attributes.size||!!b.attributes.align||
 !!b.attributes.face},right:function(b){var a=" x-small small medium large x-large xx-large 48px".split(" ");b.name="span";b.attributes.size&&(b.styles["font-size"]=a[b.attributes.size],delete b.attributes.size);b.attributes.align&&(b.styles["text-align"]=b.attributes.align,delete b.attributes.align);b.attributes.face&&(b.styles["font-family"]=b.attributes.face,delete b.attributes.face)}}]],panel:{css:[CKEDITOR.skin.getPath("editor")].concat(x.contentsCss),multiSelect:!1,attributes:{"aria-label":e.panelTitle}},

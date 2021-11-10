@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){CKEDITOR.plugins.add("uploadwidget",{lang:"az,ca,cs,da,de,de-ch,el,en,eo,es,es-mx,eu,fr,gl,hr,hu,id,it,ja,km,ko,ku,nb,nl,no,oc,pl,pt,pt-br,ru,sk,sv,tr,ug,uk,zh,zh-cn",requires:"widget,clipboard,filetools,notificationaggregator",init:function(a){a.filter.allow("*[!data-widget,!data-cke-upload-id]")}});CKEDITOR.fileTools||(CKEDITOR.fileTools={});CKEDITOR.tools.extend(CKEDITOR.fileTools,{addUploadWidget:function(a,e,c){var g=CKEDITOR.fileTools,b=a.uploadRepository,p=c.supportedTypes?10:20;
 if(c.fileToElement)a.on("paste",function(f){f=f.data;var n=f.dataTransfer,k=n.getFilesCount(),m=c.loadMethod||"loadAndUpload",d,h;if(!f.dataValue&&k)for(h=0;h<k;h++)if(d=n.getFile(h),!c.supportedTypes||g.isTypeSupported(d,c.supportedTypes)){var l=c.fileToElement(d);d=b.create(d);l&&(d[m](c.uploadUrl,c.additionalRequestParameters),CKEDITOR.fileTools.markElement(l,e,d.id),"loadAndUpload"!=m&&"upload"!=m||CKEDITOR.fileTools.bindNotifications(a,d),f.dataValue+=l.getOuterHtml())}},null,null,p);CKEDITOR.tools.extend(c,

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.add("colorbutton",{requires:"panelbutton,floatpanel",lang:"af,ar,az,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,es-mx,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,oc,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn",icons:"bgcolor,textcolor",hidpi:!0,init:function(f){function t(a,e,g,h,m){var n=new CKEDITOR.style(l["colorButton_"+e+"Style"]),q=CKEDITOR.tools.getNextId()+"_colorBox",p;m=m||{};f.ui.add(a,
 CKEDITOR.UI_PANELBUTTON,{label:g,title:g,modes:{wysiwyg:1},editorFocus:0,toolbar:"colors,"+h,allowedContent:n,requiredContent:n,contentTransformations:m.contentTransformations,panel:{css:CKEDITOR.skin.getPath("editor"),attributes:{role:"listbox","aria-label":k.panelTitle}},onBlock:function(a,b){p=b;b.autoSize=!0;b.element.addClass("cke_colorblock");b.element.setHtml(y(a,e,q));b.element.getDocument().getBody().setStyle("overflow","hidden");CKEDITOR.ui.fire("ready",this);var c=b.keys,d="rtl"==f.lang.dir;

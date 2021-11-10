@@ -10,7 +10,7 @@ use Swift_SmtpTransport;
 class Order extends AppModel {
 
     public static function saveOrder($data){
-        $order = \R::dispense('order');
+        $order = \R::dispense('as_order');
         $order->user_id = $data['user_id'];
         $order->note = $data['note'];
         $order->currency = $_SESSION['cart.currency']['code'];
@@ -26,7 +26,7 @@ class Order extends AppModel {
             $sql_part .= "($order_id, $product_id, {$product['qty']}, '{$product['title']}', {$product['price']}),";
         }
         $sql_part = rtrim($sql_part, ',');
-        \R::exec("INSERT INTO order_product (order_id, product_id, qty, title, price) VALUES $sql_part");
+        \R::exec("INSERT INTO as_order_product (order_id, product_id, qty, title, price) VALUES $sql_part");
     }
 
     public static function mailOrder($order_id, $user_email){
@@ -51,7 +51,7 @@ class Order extends AppModel {
 
         $message_admin = (new Swift_Message("Сделан заказ №{$order_id}"))
             ->setFrom([App::$app->getParams('smtp_login') => App::$app->getParams('shop_name')])
-            ->setTo(App::$app->getParams('admin_email'))
+            ->setTo(App::$app->getParams('smtp_login'))
             ->setBody($body, 'text/html')
         ;
 

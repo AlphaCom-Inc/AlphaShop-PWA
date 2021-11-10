@@ -44,11 +44,11 @@ class Filter{
     }
 
     protected function getGroups(){
-        return \R::getAssoc('SELECT id, title FROM attribute_group');
+        return \R::getAssoc('SELECT id, title FROM as_attribute_group');
     }
 
     protected static function getAttrs(){
-        $data = \R::getAssoc('SELECT * FROM attribute_value');
+        $data = \R::getAssoc('SELECT * FROM as_attribute_value');
         $attrs = [];
         foreach($data as $k => $v){
             $attrs[$v['attr_group_id']][$k] = $v['value'];

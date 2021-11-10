@@ -6,6 +6,18 @@ $('.delete').click(function(){
     if(!res) return false;
 });
 
+$('[data-mask]').inputmask();
+
+$('[data-input-type="password"] [data-btn-type="password"]').click(function () {
+    if ($('[data-input-type="password"] input[type="password"]').attr('type') == "password") {
+        $('[data-input-type="password"] input[type="password"]').attr('type', 'text');
+        $('[data-btn-type="password"]').html('<i class="ai ai-eye-off"></i>');
+    } else {
+        $('[data-input-type="password"] input[type="text"]').attr('type', 'password');
+        $('[data-btn-type="password"]').html('<i class="ai ai-eye"></i>');
+    }
+});
+
 $('.del-item').on('click', function(){
     var res = confirm('Подтвердите действие');
     if(!res) return false;
@@ -75,6 +87,35 @@ $(".select2").select2({
     }
 });
 
+if($('div').is('#favicon')){
+    var buttonFavicon = $("#favicon"),
+        fileFav;
+}
+
+if(buttonFavicon){
+    new AjaxUpload(buttonFavicon, {
+        action: adminpath + buttonFavicon.data('url') + "?upload=1",
+        data: {name: buttonFavicon.data('name')},
+        name: buttonFavicon.data('name'),
+        onSubmit: function(fileFav, ext){
+            if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
+                alert('Ошибка! Разрешены только картинки');
+                return false;
+            }
+            buttonFavicon.closest('.file-upload').find('.overlay').css({'display':'inherit'});
+
+        },
+        onComplete: function(fileFav, response){
+            setTimeout(function(){
+                buttonFavicon.closest('.file-upload').find('.overlay').css({'display':'none'});
+
+                response = JSON.parse(response);
+                $('#' + buttonFavicon.data('name')).html('<img src="/images/favicon/' + response.file + '" alt="Favicon" class="brand-image settings-favicon">');
+            }, 1000);
+        }
+    });
+}
+
 if($('div').is('#single')){
     var buttonSingle = $("#single"),
         buttonMulti = $("#multi"),
@@ -124,33 +165,6 @@ if(buttonMulti){
 
                 response = JSON.parse(response);
                 $('.' + buttonMulti.data('name')).append('<img src="/images/product/' + response.file + '" style="max-height: 150px;">');
-            }, 1000);
-        }
-    });
-}
-
-if($('.card div').is('#favicon')){
-    var buttonFavicon = $("#single");
-}
-
-if(buttonFavicon){
-    new AjaxUpload(buttonSingle, {
-        action: adminpath + buttonSingle.data('url') + "?upload=1",
-        data: {name: buttonSingle.data('name')},
-        name: buttonSingle.data('name'),
-        onSubmit: function(file, ext){
-            if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
-                alert('Ошибка! Разрешены только картинки');
-                return false;
-            }
-            buttonSingle.closest('.file-upload').find('.overlay').css({'display':'inherit'});
-        },
-        onComplete: function(file, response){
-            setTimeout(function(){
-                buttonSingle.closest('.file-upload').find('.overlay').css({'display':'none'});
-
-                response = JSON.parse(response);
-                $('.' + buttonSingle.data('name')).html('<img src="/images/favicon/' + response.file + '" class="brand-image settings-favicon">');
             }, 1000);
         }
     });

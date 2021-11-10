@@ -17,20 +17,23 @@
 
             <form action="<?=ADMIN;?>/user/recover" method="post">
                 <div class="row pincode">
-                    <div class="col-sm-3">
-                        <input type="text" name="login" class="form-control" maxlength="5">
+                    <div class="col-sm">
+                        <input type="text" name="key1" class="form-control" maxlength="5" data-next="key2">
                     </div>
-                    <div class="col-sm-3">
-                        <input type="text" name="login" class="form-control" maxlength="5">
+                    <div class="col-sm">
+                        <input type="text" id="key2" name="key2" class="form-control" maxlength="5" data-next="key3">
                     </div>
-                    <div class="col-sm-3">
-                        <input type="text" name="login" class="form-control" maxlength="5">
+                    <div class="col-sm">
+                        <input type="text" id="key3" name="key3" class="form-control" maxlength="5" data-next="key4">
                     </div>
-                    <div class="col-sm-3">
-                        <input type="text" name="login" class="form-control" maxlength="5">
+                    <div class="col-sm">
+                        <input type="text" id="key4" name="key4" class="form-control" maxlength="5" data-next="key5">
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" id="key5" name="key5" class="form-control" maxlength="5" data-next="submit">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-block" id="submit">Sign In</button>
             </form>
 
             <hr>

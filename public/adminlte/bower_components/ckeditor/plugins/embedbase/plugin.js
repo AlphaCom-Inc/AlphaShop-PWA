@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){var l={_attachScript:function(e,c){var d=new CKEDITOR.dom.element("script");d.setAttribute("src",e);d.on("error",c);CKEDITOR.document.getBody().append(d);return d},sendRequest:function(e,c,d,a){function b(){g&&(g.remove(),delete CKEDITOR._.jsonpCallbacks[h],g=null)}var k={};c=c||{};var h=CKEDITOR.tools.getNextNumber(),g;c.callback="CKEDITOR._.jsonpCallbacks["+h+"]";CKEDITOR._.jsonpCallbacks[h]=function(a){setTimeout(function(){b();d(a)})};g=this._attachScript(e.output(c),function(){b();
 a&&a()});k.cancel=b;return k}};CKEDITOR.plugins.add("embedbase",{lang:"az,ca,cs,da,de,de-ch,en,eo,es,es-mx,eu,fr,gl,hr,hu,id,it,ja,ko,ku,nb,nl,oc,pl,pt,pt-br,ru,sk,sv,tr,ug,uk,zh,zh-cn",requires:"dialog,widget,notificationaggregator",onLoad:function(){CKEDITOR._.jsonpCallbacks={}},init:function(){CKEDITOR.dialog.add("embedBase",this.path+"dialogs/embedbase.js")}});CKEDITOR.plugins.embedBase={createWidgetBaseDefinition:function(e){var c,d=e.lang.embedbase;return{mask:!0,template:"\x3cdiv\x3e\x3c/div\x3e",

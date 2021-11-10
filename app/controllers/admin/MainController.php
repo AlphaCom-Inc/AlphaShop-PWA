@@ -5,15 +5,15 @@ namespace app\controllers\admin;
 class MainController extends AppController {
 
     public function indexAction(){
-        $countNewOrders = \R::count('order', "status = '0'");
-        $countUsers = \R::count('user');
+        $countNewOrders = \R::count('as_order', "status = '0'");
+        $countUsers = \R::count('as_user');
         $countProducts = \R::count('product', "status = '1'");
-        $countCurrency = \R::count('currency');
+        $countCurrency = \R::count('as_currency');
 
-        $orders = \R::getAll("SELECT `order`.`id`, `order`.`user_id`, `order`.`status`, `order`.`date`, `order`.`update_at`, `order`.`currency`, `user`.`name`, ROUND(SUM(`order_product`.`price`), 2) AS `sum` FROM `order`
-  JOIN `user` ON `order`.`user_id` = `user`.`id`
-  JOIN `order_product` ON `order`.`id` = `order_product`.`order_id`
-  GROUP BY `order`.`id` ORDER BY `order`.`status`, `order`.`id` LIMIT 5");
+        $orders = \R::getAll("SELECT `as_order`.`id`, `as_order`.`user_id`, `as_order`.`status`, `as_order`.`date`, `as_order`.`update_at`, `as_order`.`currency`, `as_user`.`name`, ROUND(SUM(`as_order_product`.`price`), 2) AS `sum` FROM `as_order`
+  JOIN `as_user` ON `as_order`.`user_id` = `as_user`.`id`
+  JOIN `as_order_product` ON `as_order`.`id` = `as_order_product`.`order_id`
+  GROUP BY `as_order`.`id` ORDER BY `as_order`.`status`, `as_order`.`id` DESC LIMIT 5");
 
         $this->setMeta('Панель управления');
         $this->set(compact('countNewOrders', 'countCurrency', 'countProducts', 'countUsers', 'orders'));

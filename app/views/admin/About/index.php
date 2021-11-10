@@ -10,3 +10,19 @@
         </div>
     </div>
 </div>
+
+<section class="content">
+    <div class="about-page text-center">
+        <img src="dist/img/alphashop.svg" alt="" class="w-50 mb-2">
+        <h3>Alpha Shop Web App</h3>
+        <h5 class="text-gray">Version: 1.5.0</h5>
+
+        <div class="card mt-4">
+            <div class="card-body p-0">
+                <a href="mailto:support.alphashop@alphacom.uz" class="btn btn-light d-block text-left m-1"><i class="ai ai-help-circle-outline"></i> Помощь</a>
+                <a href="#" class="btn btn-light d-block text-left m-1"><i class="ai ai-ribbon-outline"></i> Лицензионное соглашения</a>
+                <a href="#" class="btn btn-light d-block text-left m-1"><i class="ai ai-logo-github"></i> Открытый исходный код </a>
+            </div>
+        </div>
+    </div>
+</section>

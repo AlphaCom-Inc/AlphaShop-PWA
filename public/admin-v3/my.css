@@ -141,6 +141,34 @@ td .ai,
     cursor: default;
 }
 
+.settings-favicon {
+    width: auto;
+    height: 255px;
+}
+
+.about-page {
+    margin: 30px auto 0;
+    width: 400px;
+}
+
+.about-page a {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.about-page a .ai {
+    font-size: 22px;
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+}
+
+
+
+
+
+
+
 textarea::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -152,9 +180,4 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 10px;
     border: 2px solid #efefef;
     cursor: pointer;
-}
-
-.settings-favicon {
-    width: auto;
-    height: 255px;
 }

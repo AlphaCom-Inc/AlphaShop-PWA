@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){function h(a){this.editor=a;this.loaders=[]}function k(a,d,b){var c=a.config.fileTools_defaultFileName;this.editor=a;this.lang=a.lang;"string"===typeof d?(this.data=d,this.file=m(this.data),this.loaded=this.total=this.file.size):(this.data=null,this.file=d,this.total=this.file.size,this.loaded=0);b?this.fileName=b:this.file.name?this.fileName=this.file.name:(a=this.file.type.split("/"),c&&(a[0]=c),this.fileName=a.join("."));this.uploaded=0;this.responseData=this.uploadTotal=null;this.status=
 "created";this.abort=function(){this.changeStatus("abort")}}function m(a){var d=a.match(l)[1];a=a.replace(l,"");a=atob(a);var b=[],c,f,e,g;for(c=0;c<a.length;c+=512){f=a.slice(c,c+512);e=Array(f.length);for(g=0;g<f.length;g++)e[g]=f.charCodeAt(g);f=new Uint8Array(e);b.push(f)}return new Blob(b,{type:d})}CKEDITOR.plugins.add("filetools",{lang:"az,ca,cs,da,de,de-ch,en,eo,es,es-mx,eu,fr,gl,hr,hu,id,it,ja,km,ko,ku,nb,nl,oc,pl,pt,pt-br,ru,sk,sv,tr,ug,uk,zh,zh-cn",beforeInit:function(a){a.uploadRepository=

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 CKEDITOR.dialog.add("colordialog",function(x){function m(){h.getById(n).removeStyle("background-color");p.getContentElement("picker","selectedColor").setValue("");y()}function z(a){a=a.data.getTarget();var c;"td"==a.getName()&&(c=a.getChild(0).getHtml())&&(y(),f=a,f.setAttribute("aria-selected",!0),f.addClass("cke_colordialog_selected"),p.getContentElement("picker","selectedColor").setValue(c))}function y(){f&&(f.removeClass("cke_colordialog_selected"),f.removeAttribute("aria-selected"),f=null)}function D(a){a=
 a.replace(/^#/,"");for(var c=0,b=[];2>=c;c++)b[c]=parseInt(a.substr(2*c,2),16);return 165<=.2126*b[0]+.7152*b[1]+.0722*b[2]}function A(a){!a.name&&(a=new CKEDITOR.event(a));var c=!/mouse/.test(a.name),b=a.data.getTarget(),g;"td"==b.getName()&&(g=b.getChild(0).getHtml())&&(q(a),c?d=b:B=b,c&&b.addClass(D(g)?"cke_colordialog_focused_light":"cke_colordialog_focused_dark"),r(g))}function q(a){if(a=!/mouse/.test(a.name)&&d)a.removeClass("cke_colordialog_focused_light"),a.removeClass("cke_colordialog_focused_dark");

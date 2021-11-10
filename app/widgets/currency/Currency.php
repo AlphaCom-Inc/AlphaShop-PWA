@@ -22,7 +22,7 @@ class Currency{
     }
 
     public static function getCurrencies(){
-        return \R::getAssoc("SELECT code, title, symbol_left, symbol_right, value, base FROM currency ORDER BY base DESC");
+        return \R::getAssoc("SELECT code, title, symbol_left, symbol_right, value, base FROM as_currency ORDER BY base DESC");
     }
 
     public static function getCurrency($currencies){

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md.md or http://ckeditor.com/license
 */
 (function(){var t=!1;CKEDITOR.plugins.add("balloonpanel",{init:function(){t||(CKEDITOR.document.appendStyleSheet(this.path+"skins/"+CKEDITOR.skinName+"/balloonpanel.css"),t=!0)}});CKEDITOR.ui.balloonPanel=function(a,b){this.editor=a;CKEDITOR.tools.extend(this,{width:360,height:"auto",triangleWidth:20,triangleHeight:20,triangleMinDistance:40},b,!0);this.templates={};for(var c in this.templateDefinitions)this.templates[c]=new CKEDITOR.template(this.templateDefinitions[c]);this.parts={};this.focusables=
 {};this.showListeners={};this.activeShowListeners={};this.rect={visible:!1};this.build();a.on("destroy",function(){this.destroy()},this)};CKEDITOR.ui.balloonPanel.prototype={templateDefinitions:{panel:'\x3cdiv class\x3d"cke {id} cke_reset_all cke_chrome cke_balloon cke_editor_{name} cke_{langDir} '+CKEDITOR.env.cssClass+'" dir\x3d"{langDir}" title\x3d"'+(CKEDITOR.env.gecko?" ":"")+'" lang\x3d"{langCode}" role\x3d"dialog" style\x3d"{style}" tabindex\x3d"-1" aria-labelledby\x3d"cke_{name}_arialbl"\x3e\x3c/div\x3e',
