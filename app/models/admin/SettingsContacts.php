@@ -10,6 +10,7 @@ class SettingsContacts extends AppModel {
         'telephone' => '',
         'email' => '',
         'address' => '',
+        'google_geo_code' => '',
     ];
 
     public $rules = [
@@ -17,6 +18,7 @@ class SettingsContacts extends AppModel {
             ['telephone'],
             ['email'],
             ['address'],
+            ['google_geo_code'],
         ],
     ];
 

@@ -8,18 +8,22 @@ use app\models\User;
 
 class CartController extends AppController {
 
+    public function indexAction(){
+        $this->setMeta('Корзина');
+    }
+
     public function addAction(){
         $id = !empty($_GET['id']) ? (int)$_GET['id'] : null;
         $qty = !empty($_GET['qty']) ? (int)$_GET['qty'] : null;
         $mod_id = !empty($_GET['mod']) ? (int)$_GET['mod'] : null;
         $mod = null;
         if($id){
-            $product = \R::findOne('product', 'id = ?', [$id]);
+            $product = \R::findOne('as_product', 'id = ?', [$id]);
             if(!$product){
                 return false;
             }
             if($mod_id){
-                $mod = \R::findOne('modification', 'id = ? AND product_id = ?', [$mod_id, $id]);
+                $mod = \R::findOne('as_modification', 'id = ? AND product_id = ?', [$mod_id, $id]);
             }
         }
         $cart = new Cart();
@@ -32,6 +36,10 @@ class CartController extends AppController {
 
     public function showAction(){
         $this->loadView('cart_modal');
+    }
+
+    public function countCartAction(){
+
     }
 
     public function deleteAction(){
@@ -54,7 +62,7 @@ class CartController extends AppController {
         $this->loadView('cart_modal');
     }
 
-    public function viewAction(){
+    public function buyAction(){
         $this->setMeta('Корзина');
     }
 

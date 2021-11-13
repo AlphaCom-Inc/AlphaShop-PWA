@@ -12,12 +12,12 @@ class ProductController extends AppController {
     public function indexAction(){
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = App::$app->getParams('pagination_adm');
-        $count = \R::count('product');
+        $count = \R::count('as_product');
         $pagination = new Pagination($page, $perpage, $count);
         $start = $pagination->getStart();
-        $products = \R::getAll("SELECT product.*, as_category.title AS cat FROM product JOIN as_category ON as_category.id = product.category_id ORDER BY product.title LIMIT $start, $perpage");
-        $this->setMeta('Список товаров');
+        $products = \R::getAll("SELECT as_product.*, as_category.title AS cat FROM as_product JOIN as_category ON as_category.id = as_product.category_id ORDER BY as_product.title LIMIT $start, $perpage");
         $this->set(compact('products', 'pagination', 'count'));
+        $this->setMeta('Список товаров');
     }
 
     public function addImageAction(){
@@ -50,12 +50,12 @@ class ProductController extends AppController {
                 $product->getErrors();
                 redirect();
             }
-            if($product->update('product', $id)){
+            if($product->update('as_product', $id)){
                 $product->editFilter($id, $data);
                 $product->editRelatedProduct($id, $data);
                 $product->saveGallery($id);
-                $alias = AppModel::createAlias('product', 'alias', $data['title'], $id);
-                $product = \R::load('product', $id);
+                $alias = AppModel::createAlias('as_product', 'alias', $data['title'], $id);
+                $product = \R::load('as_product', $id);
                 $product->alias = $alias;
                 \R::store($product);
                 $_SESSION['success'] = 'Изменения сохранены';
@@ -64,10 +64,10 @@ class ProductController extends AppController {
         }
 
         $id = $this->getRequestID();
-        $product = \R::load('product', $id);
+        $product = \R::load('as_product', $id);
         App::$app->setProperty('parent_id', $product->category_id);
         $filter = \R::getCol('SELECT attr_id FROM as_attribute_product WHERE product_id = ?', [$id]);
-        $related_product = \R::getAll("SELECT related_product.related_id, product.title FROM related_product JOIN product ON product.id = related_product.related_id WHERE related_product.product_id = ?", [$id]);
+        $related_product = \R::getAll("SELECT as_related_product.related_id, as_product.title FROM as_related_product JOIN as_product ON as_product.id = as_related_product.related_id WHERE as_related_product.product_id = ?", [$id]);
         $gallery = \R::getCol('SELECT img FROM as_gallery WHERE product_id = ?', [$id]);
         $this->setMeta("Редактирование товара");
         $this->set(compact('product', 'filter', 'related_product', 'gallery', 'recSingle', 'recMulti'));
@@ -93,7 +93,7 @@ class ProductController extends AppController {
             if($id = $product->save('as_product')){
                 $product->saveGallery($id);
                 $alias = AppModel::createAlias('as_product', 'alias', $data['title'], $id);
-                $p = \R::load('product', $id);
+                $p = \R::load('as_product', $id);
                 $p->alias = $alias;
                 \R::store($p);
                 $product->editFilter($id, $data);

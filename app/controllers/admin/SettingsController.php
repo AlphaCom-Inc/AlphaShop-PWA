@@ -7,6 +7,7 @@ use app\models\admin\Product;
 use app\models\admin\SettingsContacts;
 use app\models\admin\SettingsGeneral;
 use app\models\admin\SettingsSMTP;
+use app\models\admin\SettingsSocials;
 use app\models\AppModel;
 
 class SettingsController extends AppController {
@@ -24,15 +25,13 @@ class SettingsController extends AppController {
         $this->setMeta('Ошибки сайта');
     }
 
-    public function addImageAction(){
+    public function logoAction(){
         if(isset($_GET['upload'])){
-            if($_POST['name'] == 'single'){
-                $wmax = 512;
-                $hmax = 512;
-            }
+            $wmax = 512;
+            $hmax = 512;
             $name = $_POST['name'];
-            $product = new Product();
-            $product->uploadImg($name, $wmax, $hmax);
+            $product = new SettingsGeneral();
+            $product->uploadLogo($name, $wmax, $hmax);
         }
     }
 
@@ -66,9 +65,10 @@ class SettingsController extends AppController {
                         $r->avalue = $v;
                         \R::store($r);
                     }
-
                 }
+                $_SESSION['success'] = 'Изменения сохранены';
             }
+
             redirect();
         }
     }
@@ -94,6 +94,7 @@ class SettingsController extends AppController {
                     }
 
                 }
+            $_SESSION['success'] = 'Изменения сохранены';
             }
             redirect();
         }
@@ -120,6 +121,34 @@ class SettingsController extends AppController {
                     }
 
                 }
+            $_SESSION['success'] = 'Изменения сохранены';
+            }
+            redirect();
+        }
+    }
+
+    public function socialsAction() {
+        if(!empty($_POST)){
+            $sContacts = new SettingsSocials();
+            $data = $_POST;
+            $sContacts->load($data);
+
+            if(!$sContacts->validate($data)){
+                $sContacts->getErrors();
+                $_SESSION['form_data'] = $data;
+                redirect();
+            }
+
+            if(!empty($sContacts)) {
+                foreach ($sContacts->attributes as $k => $v) {
+                    $r = \R::findOne('as_social', "stype = '{$k}'");
+                    if ($k != $r->svalue) {
+                        $r->svalue = $v;
+                        \R::store($r);
+                    }
+
+                }
+            $_SESSION['success'] = 'Изменения сохранены';
             }
             redirect();
         }

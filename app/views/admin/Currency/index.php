@@ -23,7 +23,7 @@
                         <thead>
                         <tr class="text-center">
                             <th>ID</th>
-                            <th><i class="ai ai-text-outline"></i&nbsp;> Наименование</th>
+                            <th><i class="ai ai-text-outline"></i>&nbsp; Наименование</th>
                             <th><i class="ai ai-wallet-outline"></i>&nbsp; Код</th>
                             <th><i class="ai ai-trending-up-outline"></i>&nbsp; Значение</th>
                             <th><i class="ai ai-options-outline"></i>&nbsp; Действия</th>

@@ -31,10 +31,10 @@ class Product extends AppModel {
     ];
 
     public function editRelatedProduct($id, $data){
-        $related_product = \R::getCol('SELECT related_id FROM related_product WHERE product_id = ?', [$id]);
+        $related_product = \R::getCol('SELECT related_id FROM as_related_product WHERE product_id = ?', [$id]);
         // если менеджер убрал связанные товары - удаляем их
         if(empty($data['related']) && !empty($related_product)){
-            \R::exec("DELETE FROM related_product WHERE product_id = ?", [$id]);
+            \R::exec("DELETE FROM as_related_product WHERE product_id = ?", [$id]);
             return;
         }
         // если добавляются связанные товары
@@ -45,30 +45,30 @@ class Product extends AppModel {
                 $sql_part .= "($id, $v),";
             }
             $sql_part = rtrim($sql_part, ',');
-            \R::exec("INSERT INTO related_product (product_id, related_id) VALUES $sql_part");
+            \R::exec("INSERT INTO as_related_product (product_id, related_id) VALUES $sql_part");
             return;
         }
         // если изменились связанные товары - удалим и запишем новые
         if(!empty($data['related'])){
             $result = array_diff($related_product, $data['related']);
             if(!empty($result) || count($related_product) != count($data['related'])){
-                \R::exec("DELETE FROM related_product WHERE product_id = ?", [$id]);
+                \R::exec("DELETE FROM as_related_product WHERE product_id = ?", [$id]);
                 $sql_part = '';
                 foreach($data['related'] as $v){
                     $v = (int)$v;
                     $sql_part .= "($id, $v),";
                 }
                 $sql_part = rtrim($sql_part, ',');
-                \R::exec("INSERT INTO related_product (product_id, related_id) VALUES $sql_part");
+                \R::exec("INSERT INTO as_related_product (product_id, related_id) VALUES $sql_part");
             }
         }
     }
 
     public function editFilter($id, $data){
-        $filter = \R::getCol('SELECT attr_id FROM attribute_product WHERE product_id = ?', [$id]);
+        $filter = \R::getCol('SELECT attr_id FROM as_attribute_product WHERE product_id = ?', [$id]);
         // если менеджер убрал фильтры - удаляем их
         if(empty($data['attrs']) && !empty($filter)){
-            \R::exec("DELETE FROM attribute_product WHERE product_id = ?", [$id]);
+            \R::exec("DELETE FROM as_attribute_product WHERE product_id = ?", [$id]);
             return;
         }
         // если фильтры добавляются
@@ -78,20 +78,20 @@ class Product extends AppModel {
                 $sql_part .= "($v, $id),";
             }
             $sql_part = rtrim($sql_part, ',');
-            \R::exec("INSERT INTO attribute_product (attr_id, product_id) VALUES $sql_part");
+            \R::exec("INSERT INTO as_attribute_product (attr_id, product_id) VALUES $sql_part");
             return;
         }
         // если изменились фильтры - удалим и запишем новые
         if(!empty($data['attrs'])){
             $result = array_diff($filter, $data['attrs']);
             if(!$result || count($filter) != count($data['attrs'])){
-                \R::exec("DELETE FROM attribute_product WHERE product_id = ?", [$id]);
+                \R::exec("DELETE FROM as_attribute_product WHERE product_id = ?", [$id]);
                 $sql_part = '';
                 foreach($data['attrs'] as $v){
                     $sql_part .= "($v, $id),";
                 }
                 $sql_part = rtrim($sql_part, ',');
-                \R::exec("INSERT INTO attribute_product (attr_id, product_id) VALUES $sql_part");
+                \R::exec("INSERT INTO as_attribute_product (attr_id, product_id) VALUES $sql_part");
             }
         }
     }
@@ -110,7 +110,7 @@ class Product extends AppModel {
                 $sql_part .= "('$v', $id),";
             }
             $sql_part = rtrim($sql_part, ',');
-            \R::exec("INSERT INTO gallery (img, product_id) VALUES $sql_part");
+            \R::exec("INSERT INTO as_gallery (img, product_id) VALUES $sql_part");
             unset($_SESSION['multi']);
         }
     }
@@ -131,7 +131,7 @@ class Product extends AppModel {
             $res = array("error" => "Допустимые расширения - .gif, .jpg, .png");
             exit(json_encode($res));
         }
-        $new_name = "favicon".".$ext";
+        $new_name = md5(time()).".$ext";
         $uploadfile = $uploaddir.$new_name;
         if(@move_uploaded_file($_FILES[$name]['tmp_name'], $uploadfile)){
             if($name == 'single'){

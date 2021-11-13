@@ -16,7 +16,7 @@ class SearchController extends AppController{
     }
 
     public function indexAction(){
-        $query = !empty(trim($_GET['s'])) ? trim($_GET['s']) : null;
+        $query = !empty(trim($_GET['q'])) ? trim($_GET['q']) : null;
         if($query){
             $products = \R::find('as_product', "title LIKE ? AND status = '1'", ["%{$query}%"]);
         }

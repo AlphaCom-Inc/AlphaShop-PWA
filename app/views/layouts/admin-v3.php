@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/admin-v3/">
-    <link rel="shortcut icon" href="<?=PATH;?>/images/favicon/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="dist/img/alphashop.png" type="image/png" />
     <?=$this->getMeta();?>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -34,7 +34,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item">
-                <h3 class="m-1" id="doshboardPageTitle">{alphastore:page_title}</h3>
+                <h4 class="m-1" id="doshboardPageTitle">{alphastore:page_title}</h4>
             </li>
         </ul>
 
@@ -75,7 +75,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="<?=ADMIN;?>" class="brand-link">
-            <img src="dist/img/alphashop.svg" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+            <img src="dist/img/alphashop.svg" alt="AdminLTE Logo" class="brand-image">
             <span class="brand-text font-weight-light">Alpha Shop Admin</span>
         </a>
 
@@ -89,6 +89,14 @@
                             <i class="nav-icon ai ai-home"></i>
                             <p>
                                 Главное
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= ADMIN ?>/blog" class="nav-link">
+                            <i class="nav-icon ai ai-newspaper"></i>
+                            <p>
+                                Блог
                             </p>
                         </a>
                     </li>
@@ -136,7 +144,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link nav-down">
                             <i class="nav-icon ai ai-filter"></i>
                             <p>
                                 Фильтры
@@ -159,7 +167,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link nav-down">
                             <i class="nav-icon ai ai-settings"></i>
                             <p>
                                 Настройки
@@ -217,7 +225,7 @@ var path = '<?=PATH;?>',
         adminpath = '<?=ADMIN;?>';
 </script>
 <script src="plugins/jquery/jquery.min.js"></script>
-<script src="/js/ajaxupload.js"></script>
+<script src="/alphashop/js/ajaxupload.js"></script>
 <script src="/js/validator.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/select2/js/select2.full.min.js"></script>

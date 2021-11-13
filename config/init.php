@@ -8,7 +8,7 @@ define("CORE", ROOT . '/vendor/alphashop/core');
 define("LIBS", ROOT . '/vendor/alphashop/core/libs');
 define("CACHE", ROOT . '/tmp/cache');
 define("CONF", ROOT . '/config');
-define("LAYOUT", 'watches');
+define("LAYOUT", 'alphashop');
 
 // http://alpha.shop/public/index.php
 $app_path = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";

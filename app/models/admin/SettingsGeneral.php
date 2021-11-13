@@ -11,7 +11,6 @@ class SettingsGeneral extends AppModel
         'shop_name' => '',
         'description' => '',
         'keywords' => '',
-        'admin_email' => '',
         'pagination' => '',
         'pagination_adm' => '',
     ];
@@ -19,7 +18,6 @@ class SettingsGeneral extends AppModel
     public $rules = [
         'required' => [
             ['shop_name'],
-            ['admin_email'],
             ['pagination'],
             ['pagination_adm'],
         ],
@@ -33,6 +31,38 @@ class SettingsGeneral extends AppModel
         if(!empty($_SESSION['favicon'])){
             $this->attributes['favicon'] = $_SESSION['favicon'];
             unset($_SESSION['favicon']);
+        }
+        if(!empty($_SESSION['logo'])){
+            $this->attributes['logo'] = $_SESSION['logo'];
+            unset($_SESSION['logo']);
+        }
+    }
+
+    public function uploadLogo($name, $wmax, $hmax){
+        $uploaddir = WWW . '/images/logo/';
+        $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name'])); // расширение картинки
+        $types = array("image/png", "image/jpeg", "image/pjpeg", "image/x-png"); // массив допустимых расширений
+        if($_FILES[$name]['size'] > 1048576){
+            $res = array("error" => "Ошибка! Максимальный вес файла - 1 Мб!");
+            exit(json_encode($res));
+        }
+        if($_FILES[$name]['error']){
+            $res = array("error" => "Ошибка! Возможно, файл слишком большой.");
+            exit(json_encode($res));
+        }
+        if(!in_array($_FILES[$name]['type'], $types)){
+            $res = array("error" => "Допустимые расширения - .jpg, .png");
+            exit(json_encode($res));
+        }
+        $new_name = "logo_". time() . ".$ext";
+        $uploadfile = $uploaddir.$new_name;
+        if(@move_uploaded_file($_FILES[$name]['tmp_name'], $uploadfile)){
+            if($name == 'logo'){
+                $_SESSION['logo'] = $new_name;
+            }
+            self::resize($uploadfile, $uploadfile, $wmax, $hmax, $ext);
+            $res = array("file" => $new_name);
+            exit(json_encode($res));
         }
     }
 

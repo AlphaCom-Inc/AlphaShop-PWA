@@ -10,11 +10,15 @@ use alphashop\libs\Pagination;
 
 class CategoryController extends AppController {
 
+    public function indexAction() {
+        $this->setMeta('Категории');
+    }
+
     public function viewAction(){
         $alias = $this->route['alias'];
         $category = \R::findOne('as_category', 'alias = ?', [$alias]);
         if(!$category){
-            throw new \Exception('Страница не найдена', 404);
+            throw new \Exception('Катерогия не найдена', 404);
         }
 
         $breadcrumbs = Breadcrumbs::getBreadcrumbs($category->id);
@@ -41,7 +45,7 @@ class CategoryController extends AppController {
             }
         }
 
-        $total = \R::count('product', "category_id IN ($ids) $sql_part");
+        $total = \R::count('as_product', "category_id IN ($ids) $sql_part");
         $pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
 

@@ -4,6 +4,8 @@ namespace alphashop;
 
 class ErrorHandler{
 
+    protected $debugMode;
+
     public function __construct(){
         if(DEBUG){
             error_reporting(-1);

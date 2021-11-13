@@ -1,0 +1,34 @@
+.breadcrumb-area {
+    background-attachment: fixed !important;
+    background-position: center -200px;
+}
+
+.list-product_item a.add-to-cart-link {
+    width: auto !important;
+    padding: 0 15px;
+    border-radius: 20px !important;
+}
+
+.mobile-menu_wrapper.open .offcanvas-menu-inner, .offcanvas-minicart_wrapper.open .offcanvas-menu-inner, .offcanvas-search_wrapper.open .offcanvas-menu-inner {
+    overflow-y: scroll;
+}
+
+.offcanvas-minicart_wrapper .offcanvas-menu-inner .minicart-content .minicart-list {
+    max-height: inherit !important;
+}
+
+.bg-smoke_color {
+    background-image: url(../../images/breadcrumb/1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.footer-top_area {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.footer-bottom_area {
+    background: #f5f5f5;
+}

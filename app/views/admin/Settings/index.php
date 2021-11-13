@@ -28,15 +28,14 @@
                         <div class="tab-pane active" id="settings_general">
                             <form action="<?=ADMIN;?>/settings/general" method="post" data-toggle="validator" id="update">
                                 <div class="card-body row">
-                                    <div class="col-sm-2 align-items-center ml-3 mr-5">
+                                    <div class="col-sm-2 align-items-center ml-3">
                                         <b>Favicon</b>
-                                        <br><br>
-                                        <div class="card file-upload">
+                                        <br>
+                                        <div class="card mt-2 file-upload">
                                             <div class="card-body p-0">
-                                                <div id="favicon" data-url="settings/favicon" data-name="favicon">
+                                                <div id="single" data-url="settings/favicon" data-type="favicon" data-class="brand-image settings-favicon" class="favicon" data-name="favicon">
                                                     <img src="/images/favicon/<?=\alphashop\App::$app->getParams('favicon');?>" alt="Favicon" class="brand-image settings-favicon">
                                                 </div>
-                                                <div class="single"></div>
                                             </div>
                                             <div class="overlay" style="display: none;">
                                                 <i class="ai ai-sync fa-3x fa-spin"></i>
@@ -44,7 +43,22 @@
                                         </div>
                                         <p>Рекомендуемый размер: 512x512</p>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-2 align-items-center ml-4 mr-4">
+                                        <b>Логотип</b>
+                                        <br>
+                                        <div class="card mt-2 file-upload">
+                                            <div class="card-body p-0">
+                                                <div id="last" data-url="settings/logo" data-type="logo" data-class="brand-image settings-favicon" class="logo" data-name="logo">
+                                                    <img src="/images/logo/<?=\alphashop\App::$app->getParams('logo');?>" alt="Favicon" class="brand-image settings-favicon">
+                                                </div>
+                                            </div>
+                                            <div class="overlay" style="display: none;">
+                                                <i class="ai ai-sync fa-3x fa-spin"></i>
+                                            </div>
+                                        </div>
+                                        <p>Рекомендуемый размер: 149х37</p>
+                                    </div>
+                                    <div class="col-sm-5">
                                         <div class="form-group has-feedback">
                                             <label for="shop_name">Названия <span style="color: red;position:relative; left: 2px;">*</span></label>
                                             <input class="form-control" name="shop_name" id="shop_name" type="text" value="<?=\alphashop\App::$app->getParams('shop_name');?>" required>
@@ -132,7 +146,12 @@
                                                 <input class="form-control" name="address" id="address" type="text" value="<?=\alphashop\App::$app->getParams('address');?>" required>
                                             </div>
                                         </div>
-
+                                        <div class="row">
+                                            <div class="form-group has-feedback col-sm-12">
+                                                <label for="google_geo_code">Google Geo Code <span style="color: red;position:relative; left: 2px;">*</span></label>
+                                                <input class="form-control" name="google_geo_code" id="google_geo_code" type="text" value="<?=\alphashop\App::$app->getParams('google_geo_code');?>" required>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -142,8 +161,93 @@
                         </div>
                         <div class="tab-pane" id="settings_socials">
                             <form action="<?=ADMIN;?>/settings/socials" method="post" data-toggle="validator" id="update">
-                                <div class="card-body">
+                                <div class="card-body row">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="twitter">Twitter</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-twitter"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="twitter" id="twitter" type="text" value="<?=\alphashop\App::$app->getSocials('twitter');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="facebook">Facebook</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-facebook"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="facebook" id="facebook" type="text" value="<?=\alphashop\App::$app->getSocials('facebook');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="instagram">Instagram</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-instagram"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="instagram" id="instagram" type="text" value="<?=\alphashop\App::$app->getSocials('instagram');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="telegram">Telegram</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fab fa-telegram"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="telegram" id="telegram" type="text" value="<?=\alphashop\App::$app->getSocials('telegram');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="youtube">Youtube</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-youtube"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="youtube" id="youtube" type="text" value="<?=\alphashop\App::$app->getSocials('youtube');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="mail">Mail</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-mail"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="mail" id="mail" type="text" value="<?=\alphashop\App::$app->getSocials('mail');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="tiktok">TikTok</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-tiktok"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="tiktok" id="tiktok" type="text" value="<?=\alphashop\App::$app->getSocials('tiktok');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="vk">Vk</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-vk"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="vk" id="vk" type="text" value="<?=\alphashop\App::$app->getSocials('vk');?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-feedback col-sm-4">
+                                                <label for="linkedin">LinkedIN</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ai ai-logo-linkedin"></i></span>
+                                                    </div>
+                                                    <input class="form-control" name="linkedin" id="linkedin" type="text" value="<?=\alphashop\App::$app->getSocials('linkedin');?>">
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary"><i class="ai ai-save-outline"></i> Сохранить</button>

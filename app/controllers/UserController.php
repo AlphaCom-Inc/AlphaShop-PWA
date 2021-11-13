@@ -6,6 +6,10 @@ use app\models\User;
 
 class UserController extends AppController {
 
+    public function indexAction() {
+        $this->setMeta('Мой профиль');
+    }
+
     public function signupAction(){
         if(!empty($_POST)){
             $user = new User();
@@ -16,7 +20,7 @@ class UserController extends AppController {
                 $_SESSION['form_data'] = $data;
             }else{
                 $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
-                if($user->save('user')){
+                if($user->save('as_user')){
                     $_SESSION['success'] = 'Пользователь зарегистрирован';
                 }else{
                     $_SESSION['error'] = 'Ошибка!';
@@ -33,9 +37,9 @@ class UserController extends AppController {
             if($user->login()){
                 $_SESSION['success'] = 'Вы успешно авторизованы';
             }else{
-                $_SESSION['error'] = 'Логин/пароль введены неверно';
+                $_SESSION['error'] = 'Логин или пароль введены неверно';
             }
-            redirect();
+            redirect(PATH);
         }
         $this->setMeta('Вход');
     }

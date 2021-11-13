@@ -48,14 +48,16 @@ $('.del-item').on('click', function(){
     });
 });
 
-$('.sidebar-menu a').each(function(){
+
+$('.nav-sidebar a').each(function(){
     var location = window.location.protocol + '//' + window.location.host + window.location.pathname;
     var link = this.href;
     if(link == location){
-        $(this).parent().addClass('active');
-        $(this).closest('.treeview').addClass('active');
+        $(this).addClass('active');
+        $(this).parent().parent().closest('.nav-item').addClass('active menu-is-opening menu-open');
     }
 });
+
 
 // CKEDITOR.replace('editor1');
 $( '#container' ).summernote();
@@ -87,30 +89,33 @@ $(".select2").select2({
     }
 });
 
-if($('div').is('#favicon')){
-    var buttonFavicon = $("#favicon"),
-        fileFav;
+if($('div').is('#logo')){
+    var buttonLogo = $("#logo"),
+        fileLogo;
 }
 
-if(buttonFavicon){
-    new AjaxUpload(buttonFavicon, {
-        action: adminpath + buttonFavicon.data('url') + "?upload=1",
-        data: {name: buttonFavicon.data('name')},
-        name: buttonFavicon.data('name'),
-        onSubmit: function(fileFav, ext){
+if(buttonLogo){
+    new AjaxUpload(buttonLogo, {
+        action: adminpath + buttonLogo.data('url') + "?upload=1",
+        data: {name: buttonLogo.data('name')},
+        name: buttonLogo.data('name'),
+        onSubmit: function(fileLogo, ext){
             if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
                 alert('Ошибка! Разрешены только картинки');
                 return false;
             }
-            buttonFavicon.closest('.file-upload').find('.overlay').css({'display':'inherit'});
+            buttonLogo.closest('.file-upload').find('.overlay').css({'display':'inherit'});
 
         },
-        onComplete: function(fileFav, response){
+        onComplete: function(fileLogo, response){
             setTimeout(function(){
-                buttonFavicon.closest('.file-upload').find('.overlay').css({'display':'none'});
+                buttonLogo.closest('.file-upload').find('.overlay').css({'display':'none'});
 
+                const dataType = buttonLogo.data('type'),
+                    dataStyle = buttonLogo.data('style') ? ' style="' + buttonLogo.data('style') + '"' : '',
+                    dataClass = buttonLogo.data('class') ? ' class="' + buttonLogo.data('class') + '"' : '';
                 response = JSON.parse(response);
-                $('#' + buttonFavicon.data('name')).html('<img src="/images/favicon/' + response.file + '" alt="Favicon" class="brand-image settings-favicon">');
+                $('.' + buttonLogo.data('name')).html('<img src="/images/' + dataType + '/' + response.file + '"' + dataStyle + dataClass + '>');
             }, 1000);
         }
     });
@@ -139,8 +144,11 @@ if(buttonSingle){
             setTimeout(function(){
                 buttonSingle.closest('.file-upload').find('.overlay').css({'display':'none'});
 
+                const dataType = buttonSingle.data('type'),
+                    dataStyle = buttonSingle.data('style') ? ' style="' + buttonSingle.data('style') + '"' : '',
+                    dataClass = buttonSingle.data('class') ? ' class="' + buttonSingle.data('class') + '"' : '';
                 response = JSON.parse(response);
-                $('.' + buttonSingle.data('name')).html('<img src="/images/product/' + response.file + '" style="max-height: 150px;">');
+                $('.' + buttonSingle.data('name')).html('<img src="/images/' + dataType + '/' + response.file + '"' + dataStyle + dataClass + '>');
             }, 1000);
         }
     });
@@ -164,7 +172,7 @@ if(buttonMulti){
                 buttonMulti.closest('.file-upload').find('.overlay').css({'display':'none'});
 
                 response = JSON.parse(response);
-                $('.' + buttonMulti.data('name')).append('<img src="/images/product/' + response.file + '" style="max-height: 150px;">');
+                $('.' + buttonMulti.data('name')).append('<div class="col-lg ml-2" style="height: 255px;"><img src="/images/product/' + response.file + '" style="height: 255px; border-radius: 8px;"></div>');
             }, 1000);
         }
     });

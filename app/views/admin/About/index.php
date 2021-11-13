@@ -20,8 +20,8 @@
         <div class="card mt-4">
             <div class="card-body p-0">
                 <a href="mailto:support.alphashop@alphacom.uz" class="btn btn-light d-block text-left m-1"><i class="ai ai-help-circle-outline"></i> Помощь</a>
-                <a href="#" class="btn btn-light d-block text-left m-1"><i class="ai ai-ribbon-outline"></i> Лицензионное соглашения</a>
-                <a href="#" class="btn btn-light d-block text-left m-1"><i class="ai ai-logo-github"></i> Открытый исходный код </a>
+                <a href="<?=ADMIN;?>/about/license" class="btn btn-light d-block text-left m-1"><i class="ai ai-ribbon-outline"></i> Лицензионное соглашения</a>
+                <a href="https://alphacom.uz/" target="_blank" class="btn btn-light d-block text-left m-1"><i class="ai ai-code-slash"></i> AlphaCom, Inc </a>
             </div>
         </div>
     </div>

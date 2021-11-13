@@ -40,3 +40,11 @@ function alphaKeygen() {
 
     return alphaKeyBlock($pattern) . '-' . alphaKeyBlock($pattern) . '-' . alphaKeyBlock($pattern) . '-' . alphaKeyBlock($pattern) . '-' . alphaKeyBlock($pattern) . '-' . alphaKeyBlock($pattern);
 }
+
+function str_short($string = '', $length = 50) {
+    $string = strip_tags($string);
+    $string = substr($string, 0, $length);
+    $string = rtrim($string, "!,.-");
+    $string = substr($string, 0, strrpos($string, ' '));
+    return $string."… ";
+}

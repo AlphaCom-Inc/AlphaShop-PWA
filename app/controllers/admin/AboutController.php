@@ -8,4 +8,8 @@ class AboutController extends AppController {
         $this->setMeta('О Приложении');
     }
 
+    public function licenseAction() {
+        $this->setMeta('Лицензионное соглашения');
+    }
+
 }

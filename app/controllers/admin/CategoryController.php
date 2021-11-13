@@ -17,14 +17,14 @@ class CategoryController extends AppController {
         $children = \R::count('as_category', 'parent_id = ?', [$id]);
         $errors = '';
         if($children){
-            $errors .= '<li>Удаление невозможно, в категории есть вложенные категории</li>';
+            $errors .= '<p>Удаление невозможно, в категории есть вложенные категории</p>';
         }
-        $products = \R::count('product', 'category_id = ?', [$id]);
+        $products = \R::count('as_product', 'category_id = ?', [$id]);
         if($products){
-            $errors .= '<li>Удаление невозможно, в категории есть товары</li>';
+            $errors .= '<p>Удаление невозможно, в категории есть товары</p>';
         }
         if($errors){
-            $_SESSION['error'] = "<ul>$errors</ul>";
+            $_SESSION['error'] = "$errors";
             redirect();
         }
         $category = \R::load('as_category', $id);

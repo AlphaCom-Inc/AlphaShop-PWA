@@ -1,45 +1,50 @@
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
+<div class="breadcrumb-area">
     <div class="container">
-        <div class="breadcrumbs-main">
-            <ol class="breadcrumb">
-                <li><a href="<?= PATH ?>">Главная</a></li>
-                <li>Вход</li>
-            </ol>
+        <div class="breadcrumb-content">
+            <h2>Вход</h2>
+            <ul>
+                <li><a href="<?=PATH;?>">Главное</a></li>
+                <li class="active">Вход</li>
+            </ul>
         </div>
     </div>
 </div>
-<!--end-breadcrumbs-->
-<!--prdt-starts-->
-<div class="prdt">
-    <div class="container">
-        <div class="prdt-top">
-            <div class="col-md-12">
-                <div class="product-one login">
-                    <div class="register-top heading">
-                        <h2>Вход</h2>
-                    </div>
 
-                    <div class="register-main">
-                        <div class="col-md-6 account-left">
-                            <form method="post" action="user/login" id="login" role="form" data-toggle="validator">
-                                <div class="form-group has-feedback">
-                                    <label for="login">Login</label>
-                                    <input type="text" name="login" class="form-control" id="login" placeholder="Login" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+<div class="kenne-login-register_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
+                <!-- Login Form s-->
+                <form action="user/login" method="post">
+                    <div class="login-form">
+                        <h4 class="login-title">Вход</h4>
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+                                <label>Логин</label>
+                                <input type="text" name="login" placeholder="Имя пользователя">
+                            </div>
+                            <div class="col-12 mb--20">
+                                <label>Пароль</label>
+                                <input type="password" name="password" placeholder="Пароль">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="check-box">
+                                    <input type="checkbox" id="remember_me">
+                                    <label for="remember_me">Запомнить меня</label>
                                 </div>
-                                <div class="form-group has-feedback">
-                                    <label for="pasword">Password</label>
-                                    <input type="password" name="password" class="form-control" id="pasword" placeholder="Password" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="forgotton-password_info">
+                                    <a href="user/recover"> Забыли пароль?</a>
                                 </div>
-                                <button type="submit" class="btn btn-default">Вход</button>
-                            </form>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="kenne-login_btn">Вход</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<!--product-end-->

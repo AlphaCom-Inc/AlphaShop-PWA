@@ -2,11 +2,24 @@
 
 namespace app\controllers;
 
+use alphashop\libs\Pagination;
 use app\models\Breadcrumbs;
 use app\models\Product;
 use alphashop\App;
 
 class ProductController extends AppController {
+
+    public function indexAction() {
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $perpage = App::$app->getParams('pagination');
+        $count = \R::count('as_product', "status = '1'");
+        $pagination = new Pagination($page, $perpage, $count);
+        $start = $pagination->getStart();
+        $products = \R::find('as_product', "status = '1' ORDER BY id DESC LIMIT $start, $perpage");
+
+        $this->setMeta('Продукты');
+        $this->set(compact('products', 'pagination', 'count'));
+    }
 
     public function viewAction(){
         $alias = $this->route['alias'];

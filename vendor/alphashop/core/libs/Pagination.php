@@ -53,7 +53,7 @@ class Pagination{
             $page2right = "<li class='page-item'><a class='page-link' href='{$this->uri}page=" .($this->currentPage + 2). "'>" .($this->currentPage + 2). "</a></li>";
         }
 
-        return '<ul class="pagination pagination-sm float-right m-0">' . $startpage.$back.$page2left.$page1left.'<li class="page-item active"><a class="page-link">'.$this->currentPage.'</a></li>'.$page1right.$page2right.$forward.$endpage . '</ul>';
+        return '<ul class="pagination pagination-sm float-right m-0">' . $startpage.$back.$page2left.$page1left.'<li class="page-item active" data-status="active"><a class="page-link">'.$this->currentPage.'</a></li>'.$page1right.$page2right.$forward.$endpage . '</ul>';
     }
 
     public function __toString(){
